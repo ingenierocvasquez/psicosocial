@@ -7,7 +7,7 @@ class GroceryCrud
      * For view all the languages go to the folder assets/grocery_crud/languages/
      * @var string
      */
-    public $default_language = 'English';
+    public $default_language = 'Spanish';
 
     /**
      * There are only three choices: "uk-date" (dd/mm/yyyy), "us-date" (mm/dd/yyyy) or "sql-date" (yyyy-mm-dd)
@@ -50,13 +50,13 @@ class GroceryCrud
      * Default theme for grocery CRUD. You can choose between 'flexigrid', 'datatables', 'bootstrap', 'bootstrap-v4'
      * @var string
      */
-    public $default_theme = 'flexigrid';
+    public $default_theme = 'bootstrap';
 
     /**
      * The environment is important so we can have specific configurations for specific environments
      * @var string
      */
-    public $environment = 'production';
+    public $environment = 'developer';
 
     /**
      * Turn XSS clean into true in case you are exposing your CRUD into public. Please be aware that this is
