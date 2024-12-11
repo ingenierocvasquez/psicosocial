@@ -2,7 +2,7 @@
 
 use App\Libraries\GroceryCrud;
 
-class Centro_TrabajoController extends BaseController
+class Centro_Trabajo_Controller extends BaseController
 {
 
     //Datos Centro de Trabajo
@@ -23,7 +23,17 @@ class Centro_TrabajoController extends BaseController
 	}    
 	
     private function _dataOutput($output = null) {
-        return view('template/header')
+
+        $auth = service('auth');
+        $user = $auth->user(); // Obtiene el usuario autenticado
+
+        $data = [
+            'email' => $user->email,
+            'isAdmin' => $user->inGroup('administradores'),
+            'isDigitador' => $user->inGroup('digitadores'),
+        ];
+
+        return view('template/header', $data)
                .view('pages/salida_datos', (array)$output)
                .view('template/footer');
     }

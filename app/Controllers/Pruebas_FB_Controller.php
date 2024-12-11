@@ -2,19 +2,14 @@
 
 use App\Libraries\GroceryCrud;
 
-class Pruebas_FA_Controller extends BaseController
+class Pruebas_FB_Controller extends BaseController
 {
-    public function crud_forma_a()
+    public function crud_forma_b()
 	{
-
-        $auth = service('auth');
-        $user = $auth->user(); // Obtén el usuario autenticado.
-        $isDigitador = $user->inGroup('digitadores');
-        
 	    $crud = new GroceryCrud();
-	    $crud->setTable('forma_a');
-
-        $crud->setSubject('Registro Intralaboral Forma A', 'Formulario Intralaboral Forma A');
+	    $crud->setTable('forma_b');         
+         
+        $crud->setSubject('Registro Intralaboral Forma B', 'Formulario Intralaboral Forma B');
         $crud->displayAs('fec_aplica', 'Fecha de Aplicación del Instrumento');
         $crud->displayAs('nro_documento', 'Numero de Documento del Colaborador');
 
@@ -170,34 +165,20 @@ class Pruebas_FA_Controller extends BaseController
             'pregunta_61', 'pregunta_62', 'pregunta_63', 'pregunta_64', 'pregunta_65', 'pregunta_66', 'pregunta_67', 'pregunta_68', 'pregunta_69', 'pregunta_70',
             'pregunta_71', 'pregunta_72', 'pregunta_73', 'pregunta_74', 'pregunta_75', 'pregunta_76', 'pregunta_77', 'pregunta_78', 'pregunta_79', 'pregunta_80',
             'pregunta_81', 'pregunta_82', 'pregunta_83', 'pregunta_84', 'pregunta_85', 'pregunta_86', 'pregunta_87', 'pregunta_88', 'pregunta_89', 'pregunta_90',
-            'pregunta_91', 'pregunta_92', 'pregunta_93', 'pregunta_94', 'pregunta_95', 'pregunta_96', 'pregunta_97', 'pregunta_98', 'pregunta_99', 'pregunta_100',
-            'pregunta_101', 'pregunta_102', 'pregunta_103', 'pregunta_104', 'pregunta_105'
+            'pregunta_91', 'pregunta_92', 'pregunta_93', 'pregunta_94', 'pregunta_95', 'pregunta_96', 'pregunta_97'
         ]);
-      
+
+         
         //Relaciones
-        $crud->setRelation('nro_documento', 'colaborador', '{nro_documento} - {nombre_completo}', ['tipo_forma' => 'Forma A']);
-        $crud->setRelation('creado_por', 'users', 'username');
-
-             //Where
-
-             if ($isDigitador): 
-                $crud->fieldType('creado_por', 'hidden');
-                $crud->displayAs('creado_por', 'Registro Digitado Por');                       
-                $crud->where('creado_por', $user->id);
-             endif; 
-        
-         //Callback
-        $crud->callbackBeforeInsert(function ($postArray) use ($user) {
-            $postArray['creado_por'] = $user->id; // Añade el ID del usuario actual.
-            return $postArray;
-        });       
+        $crud->setRelation('nro_documento', 'colaborador', '{nro_documento} - {nombre_completo}', ['tipo_forma' => 'Forma B']);
 
 	    $output = $crud->render();       
 		return $this->_dataOutput($output);
 	}
 
-       
+        /** Callback**/
         
+
    
 	public function vista_resultados_fa()
 	{
@@ -287,5 +268,6 @@ class Pruebas_FA_Controller extends BaseController
                .view('pages/salida_datos', (array)$output)
                .view('template/footer');
     }
+
 
 }

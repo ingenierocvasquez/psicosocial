@@ -44,13 +44,15 @@
                     <!-- Elementos del menú -->
                     <div class="collapse navbar-collapse" id="navbar-menu">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="<?php echo site_url('home')?>"> <i class="fa-solid fa-house"></i> Inicio</a></li>
+                            <li class="active"><a href="<?php echo site_url('inicio')?>"> <i class="fa-solid fa-house"></i> Inicio</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa-solid fa-user"></i> 
                                     Ficha de Datos Generales <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="<?php echo site_url('centro_trabajocontroller/crud_centro_trabajo')?>"> <i class="fa-solid fa-building"></i> Centros de Trabajo</a></li>
+                                <?php if ($isAdmin): ?>
+                                    <li><a href="<?php echo site_url('centro_trabajo_controller/crud_centro_trabajo')?>"> <i class="fa-solid fa-building"></i> Centros de Trabajo</a></li>
+                                <?php endif; ?>
                                     <li><a href="<?php echo site_url('colaborador_controller/crud_colaborador')?>"> <i class="fa-solid fa-user-group"></i> Colaboradores</a></li>
                                 </ul>
                             </li>
@@ -61,11 +63,12 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="<?php echo site_url('pruebas_fa_controller/crud_forma_a')?>"> <i class="fa-solid fa-file-lines"></i> Formulario Intralaboral Forma A</a></li>
-                                    <li><a href="#"> <i class="fa-solid fa-file-lines"></i> Formulario Intralaboral Forma B</a></li>
+                                    <li><a href="<?php echo site_url('pruebas_fb_controller/crud_forma_b')?>"> <i class="fa-solid fa-file-lines"></i> Formulario Intralaboral Forma B</a></li>
                                     <li><a href="#"> <i class="fa-solid fa-file-lines"></i> Formulario Extralaboral</a></li>
                                     <li><a href="#"> <i class="fa-solid fa-file-lines"></i> Formulario Estrés</a></li>
                                 </ul>
                             </li>
+                            <?php if ($isAdmin): ?>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa-solid fa-file-csv"></i> 
                                     Resultados <span class="caret"></span>
@@ -77,16 +80,17 @@
                                     <li><a href="#"> <i class="fa-solid fa-file-csv"></i> Resultados Estrés</a></li>
                                 </ul>
                             </li>
+                            <?php endif; ?>
                             <!--<li><a href="#">Acerca de</a></li>-->
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa-solid fa-door-open"></i> 
-                                    Biervenido: <span class="caret"></span>
+                                    Biervenido: <?= $email ?> <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href=""> <i class="fa-regular fa-user"></i> Perfil de Usuario</a></li>
-                                    <li><a href="#"> <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a></li>
+                                    <li><a href="<?php echo site_url('logout')?>"> <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a></li>
                                 </ul>
                             </li>
                         </ul>

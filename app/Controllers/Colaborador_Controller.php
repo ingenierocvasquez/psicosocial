@@ -34,7 +34,17 @@ class Colaborador_Controller extends BaseController
     
 	
     private function _dataOutput($output = null) {
-        return view('template/header')
+
+        $auth = service('auth');
+        $user = $auth->user(); // Obtiene el usuario autenticado
+
+        $data = [
+            'email' => $user->email,
+            'isAdmin' => $user->inGroup('administradores'),
+            'isDigitador' => $user->inGroup('digitadores'),
+        ];
+
+        return view('template/header', $data)
                .view('pages/salida_datos', (array)$output)
                .view('template/footer');
     }
