@@ -49,3 +49,7 @@ div.invisible,.invisible{opacity:0}
 span.required {
     color: red;
 }
+
+footer.footer {
+    margin-bottom: 20px;
+}

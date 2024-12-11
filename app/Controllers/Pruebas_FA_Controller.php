@@ -2,25 +2,14 @@
 
 use App\Libraries\GroceryCrud;
 
-class Examples extends BaseController
+class Pruebas_FA_Controller extends BaseController
 {
-
-    //Datos Socidemograficos
-    public function crud_socidemografico()
-	{
-	    $crud = new GroceryCrud();
-	    $crud->setTable('sociodemo');
-	    $output = $crud->render();
-		return $this->_exampleOutput($output);
-	}
-
     public function crud_forma_a()
 	{
 	    $crud = new GroceryCrud();
 	    $crud->setTable('forma_a');
 
-
-        $crud->setSubject('Registro Forma A', 'Formulario Intralaboral Forma A');
+        $crud->setSubject('Registro Intralaboral Forma A', 'Formulario Intralaboral Forma A');
         $crud->displayAs('fec_aplica', 'Fecha de Aplicación del Instrumento');
         $crud->displayAs('nro_documento', 'Numero de Documento del Colaborador');
 
@@ -162,173 +151,114 @@ class Examples extends BaseController
         $crud->displayAs('pregunta_122', '122. Tengo colaboradores que me preocupan por su desempeño');
         $crud->displayAs('pregunta_123', '123. Tengo colaboradores que ignoran las sugerencias para mejorar su trabajo');
 
-
-
-
-
-
-
-
-        $crud->requiredFields([
-            'pregunta_1', 
-            'pregunta_2', 
-            'pregunta_3', 
-            'pregunta_4', 
-            'pregunta_5', 
-            'pregunta_6', 
-            'pregunta_7', 
-            'pregunta_8', 
-            'pregunta_9', 
-            'pregunta_10', 
-            'pregunta_11', 
-            'pregunta_12', 
-            'pregunta_13', 
-            'pregunta_14', 
-            'pregunta_15', 
-            'pregunta_16', 
-            'pregunta_17', 
-            'pregunta_18', 
-            'pregunta_19', 
-            'pregunta_20', 
-            'pregunta_21', 
-            'pregunta_22', 
-            'pregunta_23', 
-            'pregunta_24', 
-            'pregunta_25', 
-            'pregunta_26', 
-            'pregunta_27', 
-            'pregunta_28', 
-            'pregunta_29', 
-            'pregunta_30', 
-            'pregunta_31', 
-            'pregunta_32', 
-            'pregunta_33', 
-            'pregunta_34', 
-            'pregunta_35', 
-            'pregunta_36', 
-            'pregunta_37', 
-            'pregunta_38', 
-            'pregunta_39', 
-            'pregunta_40', 
-            'pregunta_41', 
-            'pregunta_42', 
-            'pregunta_43', 
-            'pregunta_44', 
-            'pregunta_45', 
-            'pregunta_46', 
-            'pregunta_47', 
-            'pregunta_48', 
-            'pregunta_49', 
-            'pregunta_50', 
-            'pregunta_51', 
-            'pregunta_52', 
-            'pregunta_53', 
-            'pregunta_54', 
-            'pregunta_55', 
-            'pregunta_56', 
-            'pregunta_57', 
-            'pregunta_58', 
-            'pregunta_59', 
-            'pregunta_60', 
-            'pregunta_61', 
-            'pregunta_62'
-        ]);
+        /**Rules**/
+                
+        $crud->unsetDelete();
         
+        $crud->requiredFields([
+            'pregunta_1', 'pregunta_2', 'pregunta_3', 'pregunta_4', 'pregunta_5', 'pregunta_6', 'pregunta_7', 'pregunta_8', 'pregunta_9', 'pregunta_10',
+            'pregunta_11', 'pregunta_12', 'pregunta_13', 'pregunta_14', 'pregunta_15', 'pregunta_16', 'pregunta_17', 'pregunta_18', 'pregunta_19', 'pregunta_20',
+            'pregunta_21', 'pregunta_22', 'pregunta_23', 'pregunta_24', 'pregunta_25', 'pregunta_26', 'pregunta_27', 'pregunta_28', 'pregunta_29', 'pregunta_30',
+            'pregunta_31', 'pregunta_32', 'pregunta_33', 'pregunta_34', 'pregunta_35', 'pregunta_36', 'pregunta_37', 'pregunta_38', 'pregunta_39', 'pregunta_40',
+            'pregunta_41', 'pregunta_42', 'pregunta_43', 'pregunta_44', 'pregunta_45', 'pregunta_46', 'pregunta_47', 'pregunta_48', 'pregunta_49', 'pregunta_50',
+            'pregunta_51', 'pregunta_52', 'pregunta_53', 'pregunta_54', 'pregunta_55', 'pregunta_56', 'pregunta_57', 'pregunta_58', 'pregunta_59', 'pregunta_60',
+            'pregunta_61', 'pregunta_62', 'pregunta_63', 'pregunta_64', 'pregunta_65', 'pregunta_66', 'pregunta_67', 'pregunta_68', 'pregunta_69', 'pregunta_70',
+            'pregunta_71', 'pregunta_72', 'pregunta_73', 'pregunta_74', 'pregunta_75', 'pregunta_76', 'pregunta_77', 'pregunta_78', 'pregunta_79', 'pregunta_80',
+            'pregunta_81', 'pregunta_82', 'pregunta_83', 'pregunta_84', 'pregunta_85', 'pregunta_86', 'pregunta_87', 'pregunta_88', 'pregunta_89', 'pregunta_90',
+            'pregunta_91', 'pregunta_92', 'pregunta_93', 'pregunta_94', 'pregunta_95', 'pregunta_96', 'pregunta_97', 'pregunta_98', 'pregunta_99', 'pregunta_100',
+            'pregunta_101', 'pregunta_102', 'pregunta_103', 'pregunta_104', 'pregunta_105'
+        ]);
 
-                                
-	    $output = $crud->render();
-		return $this->_exampleOutput($output);
+        //Relaciones
+        $crud->setRelation('nro_documento', 'colaborador', '{nro_documento} - {nombre_completo}');
+        
+        // Callback para agregar
+
+
+	    $output = $crud->render();       
+		return $this->_dataOutput($output);
 	}
 
-	public function customers_management()
+        /** Callback**/
+
+   
+	public function vista_resultados_fa()
 	{
 	    $crud = new GroceryCrud();
-	    $crud->setTable('customers');
+	    $crud->setTable('resultados_fa');
+
+        $crud->setSubject('Resultados Intralaboral Forma A', 'Resultados Intralaboral Forma A');
+        $crud->displayAs('fec_aplica', 'Fecha de Aplicación del Instrumento');
+        $crud->displayAs('nro_documento', 'Numero de Documento del Colaborador');
+
+        $crud->displayAs('pt_dim1', 'Dimensión: Características del liderazgo - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dim1', 'Dimensión: Características del liderazgo - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_dim2', 'Dimensión: Relaciones sociales en el trabajo - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dim2', 'Dimensión: Relaciones sociales en el trabajo - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_dim3', 'Dimensión: Retroalimentación del desempeño - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dim3', 'Dimensión: Retroalimentación del desempeño - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_dim4', 'Dimensión: Relación con los colaboradores - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dim4', 'Dimensión: Relación con los colaboradores - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_dom1', 'DOMINIO: Liderazgo y relaciones sociales en el trabajo - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dom1', 'DOMINIO: Liderazgo y relaciones sociales en el trabajo - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_dim5', 'Dimensión: Claridad de rol - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dim5', 'Dimensión: Claridad de rol - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_dim6', 'Dimensión: Capacitación - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dim6', 'Dimensión: Capacitación - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_dim7', 'Dimensión: Participación y manejo del cambio - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dim7', 'Dimensión: Participación y manejo del cambio - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_dim8', 'Dimensión: Oportunidades para el uso y desarrollo de habilidades y conocimientos - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dim8', 'Dimensión: Oportunidades para el uso y desarrollo de habilidades y conocimientos - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_dim9', 'Dimensión: Control y autonomía sobre el trabajo - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dim9', 'Dimensión: Control y autonomía sobre el trabajo - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_dom2', 'DOMINIO Control sobre el trabajo - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dom2', 'DOMINIO Control sobre el trabajo - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_dim10', 'Dimensión: Demandas ambientales y de esfuerzo físico - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dim10', 'Dimensión: Demandas ambientales y de esfuerzo físico - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_dim11', 'Dimensión: Demandas emocionales - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dim11', 'Dimensión: Demandas emocionales - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_dim12', 'Dimensión: Demandas cuantitativas - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dim12', 'Dimensión: Demandas cuantitativas - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_dim13', 'Dimensión: Influencia del trabajo sobre el entorno extralaboral - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dim13', 'Dimensión: Influencia del trabajo sobre el entorno extralaboral - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_dim14', 'Dimensión: Exigencias de responsabilidad del cargo - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dim14', 'Dimensión: Exigencias de responsabilidad del cargo - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_dim15', 'Dimensión: Demandas de carga mental - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dim15', 'Dimensión: Demandas de carga mental - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_dim16', 'Dimensión: Consistencia del rol - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dim16', 'Dimensión: Consistencia del rol - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_dim17', 'Dimensión: Demandas de la jornada de trabajo - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dim17', 'Dimensión: Demandas de la jornada de trabajo - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_dom3', 'DOMINIO: Demandas del trabajo - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dom3', 'DOMINIO: Demandas del trabajo - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_dim18', 'Dimensión: Recompensas derivadas de la pertenencia a la organización y del trabajo que se realiza - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dim18', 'Dimensión: Recompensas derivadas de la pertenencia a la organización y del trabajo que se realiza - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_dim19', 'Dimensión: Reconocimiento y compensación - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dim19', 'Dimensión: Reconocimiento y compensación - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_dom4', 'DOMINIO: Recompensas - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_dom4', 'DOMINIO: Recompensas - Forma A (nivel de riesgo)');
+        $crud->displayAs('pt_total_fa', 'PUNTAJE TOTAL del cuestionario de factores de riesgo psicosocial intralaboral - Forma A (puntaje transformado)');
+        $crud->displayAs('nr_total_fa', 'PUNTAJE TOTAL del cuestionario de factores de riesgo psicosocial intralaboral - Forma A (nivel de riesgo)');
+
+
+        //Rules
+        $crud->unsetOperations();
+
+        //Relaciones
+        $crud->setRelation('nro_documento', 'colaborador', '{nro_documento} - {nombre_completo}');
+
 	    $output = $crud->render();
-		return $this->_exampleOutput($output);
+		return $this->_dataOutput($output);
+
+
+      
 	}
 
-	public function orders_management() {
-        $crud = new GroceryCrud();
-
-        $crud->setRelation('customerNumber','customers','{contactLastName} {contactFirstName}');
-        $crud->displayAs('customerNumber','Customer');
-        $crud->setTable('orders');
-        $crud->setSubject('Order');
-        $crud->unsetAdd();
-        $crud->unsetDelete();
-
-        $output = $crud->render();
-
-        return $this->_exampleOutput($output);
-    }
-
-    public function offices_management () {
-        $crud = new GroceryCrud();
-
-        $crud->setTheme('datatables');
-        $crud->setTable('offices');
-        $crud->setSubject('Office');
-        $crud->requiredFields(['city']);
-        $crud->columns(['city','country','phone','addressLine1','postalCode']);
-        $crud->setRead();
-
-        $output = $crud->render();
-
-        return $this->_exampleOutput($output);
-    }
-
-    public function products_management() {
-        $crud = new GroceryCrud();
-
-        $crud->setTable('products');
-        $crud->setSubject('Product');
-        $crud->unsetColumns(['productDescription']);
-        $crud->callbackColumn('buyPrice', function ($value) {
-            return $value.' &euro;';
-        });
-
-        $output = $crud->render();
-
-        return $this->_exampleOutput($output);
-    }
-
-    public function employees_management()
-    {
-        $crud = new GroceryCrud();
-
-        $crud->setTheme('datatables');
-        $crud->setTable('employees');
-        $crud->setRelation('officeCode','offices','city');
-        $crud->displayAs('officeCode','Office City');
-        $crud->setSubject('Employee');
-
-        $crud->requiredFields(['lastName']);
-
-        $output = $crud->render();
-
-        return $this->_exampleOutput($output);
-    }
-
-    public function film_management()
-    {
-        $crud = new GroceryCrud();
-
-        $crud->setTable('film');
-        $crud->setRelationNtoN('actors', 'film_actor', 'actor', 'film_id', 'actor_id', 'fullname');
-        $crud->setRelationNtoN('category', 'film_category', 'category', 'film_id', 'category_id', 'name');
-        $crud->unsetColumns(['special_features','description','actors']);
-
-        $crud->fields(['title', 'description', 'actors' ,  'category' ,'release_year', 'rental_duration', 'rental_rate', 'length', 'replacement_cost', 'rating', 'special_features']);
-
-        $output = $crud->render();
-
-        return $this->_exampleOutput($output);
-    }
-
-
-    private function _exampleOutput($output = null) {
-        return view('example', (array)$output);
+	
+    private function _dataOutput($output = null) {
+        return view('template/header')
+               .view('pages/salida_datos', (array)$output)
+               .view('template/footer');
     }
 
 

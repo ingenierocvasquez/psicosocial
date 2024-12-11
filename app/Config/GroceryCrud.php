@@ -37,7 +37,7 @@ class GroceryCrud
      * The character limiter at the list page, zero(0) value if you don't want character limiter at your list page
      * @var int
      */
-    public $character_limiter = 30;
+    public $character_limiter = 100;
 
     /**
      * Having some options at the list paging. This is the default one that all the websites are using.

@@ -1,4 +1,6 @@
-CREATE VIEW cal_items_fa AS SELECT fec_aplica, nro_documento,
+DROP VIEW vista_cal_items_fa;
+
+CREATE VIEW vista_cal_items_fa AS SELECT fec_aplica, nro_documento,
 	 CASE pregunta_1 WHEN 'Siempre' THEN 4
                     WHEN 'Casi siempre' THEN 3
                     WHEN 'Algunas veces' THEN 2
