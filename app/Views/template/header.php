@@ -65,7 +65,7 @@
                                     <li><a href="<?php echo site_url('pruebas_intralaboral_fa_controller/crud_forma_a')?>"> <i class="fa-solid fa-file-lines"></i> Formulario Intralaboral Forma A</a></li>
                                     <li><a href="<?php echo site_url('pruebas_intralaboral_fb_controller/crud_forma_b')?>"> <i class="fa-solid fa-file-lines"></i> Formulario Intralaboral Forma B</a></li>
                                     <li><a href="<?php echo site_url('pruebas_extralaboral_fa_fb_controller/crud_forma_extra_ab')?>"> <i class="fa-solid fa-file-lines"></i> Formulario Extralaboral Forma A-B</a></li>
-                                    <li><a href="#"> <i class="fa-solid fa-file-lines"></i> Formulario Estrés</a></li>
+                                    <li><a href="<?php echo site_url('pruebas_estres_fa_fb_controller/crud_forma_estres_ab')?>"> <i class="fa-solid fa-file-lines"></i> Formulario Estrés</a></li>
                                 </ul>
                             </li>
                             <?php if ($isAdmin): ?>
@@ -77,7 +77,7 @@
                                     <li><a href="<?php echo site_url('pruebas_intralaboral_fa_controller/vista_resultados_fa')?>"> <i class="fa-solid fa-file-csv"></i> Reporte Individual Intralaboral Forma A</a></li>
                                     <li><a href="<?php echo site_url('pruebas_intralaboral_fb_controller/vista_resultados_fb')?>"> <i class="fa-solid fa-file-csv"></i> Reporte Individual Intralaboral Forma B</a></li>
                                     <li><a href="<?php echo site_url('pruebas_extralaboral_fa_fb_controller/vista_resultados_extra_fa_fb')?>"> <i class="fa-solid fa-file-csv"></i> Reporte Individual Extralaboral Forma A - B</a></li>
-                                    <li><a href="#"> <i class="fa-solid fa-file-csv"></i> Reporte Individual Estrés Forma A - B</a></li>
+                                    <li><a href="<?php echo site_url('pruebas_estres_fa_fb_controller/vista_resultados_estres_fa_fb')?>"> <i class="fa-solid fa-file-csv"></i> Reporte Individual Estrés Forma A - B</a></li>
                                     <li><a href="<?php echo site_url('reporte_general_controller/reporte_general')?>"> <i class="fa-solid fa-file-csv"></i> Resultados General</a></li>
                                 </ul>
                             </li>

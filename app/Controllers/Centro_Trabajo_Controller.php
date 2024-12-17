@@ -10,6 +10,8 @@ class Centro_Trabajo_Controller extends BaseController
 	{
 	    $crud = new GroceryCrud();
 	    $crud->setTable('centro_trabajo');
+        $crud->displayAs('creado_por', 'Registro Digitado Por');
+        $crud->fieldType('creado_por', 'hidden');
 
         $crud->setSubject('Centros de Trabajo', 'Registro de Centro de Trabajo');
 
@@ -17,6 +19,28 @@ class Centro_Trabajo_Controller extends BaseController
         $crud->requiredFields([
             'id', 'nombre', 'nit'
         ]);
+
+         //Callback
+         $crud->callbackBeforeInsert(function ($stateParameters) {
+            // Obtén el ID del usuario desde la sesión activa usando Shield o el método de tu preferencia
+            $user = \CodeIgniter\Config\Services::auth()->user();  // Esto depende de cómo tengas configurado Shield
+        
+            // Verifica si el usuario está autenticado y si tiene un ID válido
+            if ($user && isset($user->id)) {
+                $data = $stateParameters->data;  // Accede directamente a los datos de la inserción
+        
+                // Añade el ID del usuario al campo 'creado_por'
+                $data['creado_por'] = $user->id;
+        
+                // Actualiza los datos para la inserción
+                $stateParameters->data = $data;  // Modifica los datos de la inserción
+            } else {
+                // Si el usuario no está autenticado, lanza un error o realiza alguna acción
+                throw new \Exception('No se pudo obtener el ID del usuario activo.');
+            }
+        
+            return $stateParameters;
+        });
 
 	    $output = $crud->render();
 		return $this->_dataOutput($output);

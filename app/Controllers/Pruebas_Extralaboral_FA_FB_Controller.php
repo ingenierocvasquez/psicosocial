@@ -8,7 +8,8 @@ class Pruebas_Extralaboral_FA_FB_Controller extends BaseController
 	{
 
         $auth = service('auth');
-        $user = $auth->user();
+        $user = $auth->user(); // Obtén el usuario autenticado.
+        $isDigitador = $user->inGroup('digitadores');
 
 	    $crud = new GroceryCrud();
 	    $crud->setTable('forma_extra_fa_fb');         
@@ -20,42 +21,7 @@ class Pruebas_Extralaboral_FA_FB_Controller extends BaseController
         
         $crud->displayAs('creado_por', 'Registro Digitado Por');
         $crud->fieldType('creado_por', 'hidden');
-
-        $crud->columns([
-            'fec_aplica',
-            'nro_documento',
-            'pregunta_1',
-            'pregunta_2',
-            'pregunta_3',
-            'pregunta_4',
-            'pregunta_5',
-            'pregunta_6',
-            'pregunta_7',
-            'pregunta_8',
-            'pregunta_9',
-            'pregunta_10',
-            'pregunta_11',
-            'pregunta_12',
-            'pregunta_13',
-            'pregunta_14',
-            'pregunta_15',
-            'pregunta_16',
-            'pregunta_17',
-            'pregunta_18',
-            'pregunta_19',
-            'pregunta_20',
-            'pregunta_21',
-            'pregunta_22',
-            'pregunta_23',
-            'pregunta_24',
-            'pregunta_25',
-            'pregunta_26',
-            'pregunta_27',
-            'pregunta_28',
-            'pregunta_29',
-            'pregunta_30',
-            'pregunta_31'
-        ]);
+      
         
 
 $crud->displayAs('pregunta_1', '1. Es fácil transportarme entre mi casa y el trabajo');
@@ -100,7 +66,14 @@ $crud->displayAs('pregunta_31', '31. En mi hogar tenemos deudas difíciles de pa
             'pregunta_11', 'pregunta_12', 'pregunta_13', 'pregunta_14', 'pregunta_15', 'pregunta_16', 'pregunta_17', 'pregunta_18', 'pregunta_19', 'pregunta_20',
             'pregunta_21', 'pregunta_22', 'pregunta_23', 'pregunta_24', 'pregunta_25', 'pregunta_26', 'pregunta_27', 'pregunta_28', 'pregunta_29', 'pregunta_30',
             'pregunta_31'
-        ]);       
+        ]);     
+        
+        // Where
+        if ($isDigitador):                  
+            $crud->where('forma_extra_fa_fb.creado_por', $user->id);
+            $crud->unsetDelete();
+            $crud->unsetEdit();
+         endif; 
 
          
         //Relaciones

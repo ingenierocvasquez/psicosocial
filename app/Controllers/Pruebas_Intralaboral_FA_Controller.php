@@ -21,135 +21,6 @@ class Pruebas_Intralaboral_FA_Controller extends BaseController
         $crud->displayAs('creado_por', 'Registro Digitado Por');
         $crud->fieldType('creado_por', 'hidden');
         $crud->unsetDelete();
-        
-        $crud->columns([
-            'fec_aplica',
-            'nro_documento',
-            'pregunta_1',
-            'pregunta_2',
-            'pregunta_3',
-            'pregunta_4',
-            'pregunta_5',
-            'pregunta_6',
-            'pregunta_7',
-            'pregunta_8',
-            'pregunta_9',
-            'pregunta_10',
-            'pregunta_11',
-            'pregunta_12',
-            'pregunta_13',
-            'pregunta_14',
-            'pregunta_15',
-            'pregunta_16',
-            'pregunta_17',
-            'pregunta_18',
-            'pregunta_19',
-            'pregunta_20',
-            'pregunta_21',
-            'pregunta_22',
-            'pregunta_23',
-            'pregunta_24',
-            'pregunta_25',
-            'pregunta_26',
-            'pregunta_27',
-            'pregunta_28',
-            'pregunta_29',
-            'pregunta_30',
-            'pregunta_31',
-            'pregunta_32',
-            'pregunta_33',
-            'pregunta_34',
-            'pregunta_35',
-            'pregunta_36',
-            'pregunta_37',
-            'pregunta_38',
-            'pregunta_39',
-            'pregunta_40',
-            'pregunta_41',
-            'pregunta_42',
-            'pregunta_43',
-            'pregunta_44',
-            'pregunta_45',
-            'pregunta_46',
-            'pregunta_47',
-            'pregunta_48',
-            'pregunta_49',
-            'pregunta_50',
-            'pregunta_51',
-            'pregunta_52',
-            'pregunta_53',
-            'pregunta_54',
-            'pregunta_55',
-            'pregunta_56',
-            'pregunta_57',
-            'pregunta_58',
-            'pregunta_59',
-            'pregunta_60',
-            'pregunta_61',
-            'pregunta_62',
-            'pregunta_63',
-            'pregunta_64',
-            'pregunta_65',
-            'pregunta_66',
-            'pregunta_67',
-            'pregunta_68',
-            'pregunta_69',
-            'pregunta_70',
-            'pregunta_71',
-            'pregunta_72',
-            'pregunta_73',
-            'pregunta_74',
-            'pregunta_75',
-            'pregunta_76',
-            'pregunta_77',
-            'pregunta_78',
-            'pregunta_79',
-            'pregunta_80',
-            'pregunta_81',
-            'pregunta_82',
-            'pregunta_83',
-            'pregunta_84',
-            'pregunta_85',
-            'pregunta_86',
-            'pregunta_87',
-            'pregunta_88',
-            'pregunta_89',
-            'pregunta_90',
-            'pregunta_91',
-            'pregunta_92',
-            'pregunta_93',
-            'pregunta_94',
-            'pregunta_95',
-            'pregunta_96',
-            'pregunta_97',
-            'pregunta_98',
-            'pregunta_99',
-            'pregunta_100',
-            'pregunta_101',
-            'pregunta_102',
-            'pregunta_103',
-            'pregunta_104',
-            'pregunta_105',
-            'pregunta_106',
-            'pregunta_107',
-            'pregunta_108',
-            'pregunta_109',
-            'pregunta_110',
-            'pregunta_111',
-            'pregunta_112',
-            'pregunta_113',
-            'pregunta_114',
-            'pregunta_115',
-            'pregunta_116',
-            'pregunta_117',
-            'pregunta_118',
-            'pregunta_119',
-            'pregunta_120',
-            'pregunta_121',
-            'pregunta_122',
-            'pregunta_123'
-        ]);
-        
 
         $crud->displayAs('pregunta_1', '1. El ruido en el lugar donde trabajo es molesto');
         $crud->displayAs('pregunta_2', '2. En el lugar donde trabajo hace mucho frío');
@@ -313,17 +184,34 @@ class Pruebas_Intralaboral_FA_Controller extends BaseController
 
              //Where
 
-             if ($isDigitador):                    
-                $crud->where('creado_por', $user->id);
+             if ($isDigitador):            
+                $crud->where('forma_a.creado_por', $user->id);
                 $crud->unsetDelete();
                 $crud->unsetEdit();
              endif; 
         
-         //Callback
-        $crud->callbackBeforeInsert(function ($postArray) use ($user) {
-            $postArray['creado_por'] = $user->id; // Añade el ID del usuario actual.
-            return $postArray;
-        });       
+      //Callback
+      $crud->callbackBeforeInsert(function ($stateParameters) {
+        // Obtén el ID del usuario desde la sesión activa usando Shield o el método de tu preferencia
+        $user = \CodeIgniter\Config\Services::auth()->user();  // Esto depende de cómo tengas configurado Shield
+    
+        // Verifica si el usuario está autenticado y si tiene un ID válido
+        if ($user && isset($user->id)) {
+            $data = $stateParameters->data;  // Accede directamente a los datos de la inserción
+    
+            // Añade el ID del usuario al campo 'creado_por'
+            $data['creado_por'] = $user->id;
+    
+            // Actualiza los datos para la inserción
+            $stateParameters->data = $data;  // Modifica los datos de la inserción
+        } else {
+            // Si el usuario no está autenticado, lanza un error o realiza alguna acción
+            throw new \Exception('No se pudo obtener el ID del usuario activo.');
+        }
+    
+        return $stateParameters;
+    });
+ 
 
 	    $output = $crud->render();       
 		return $this->_dataOutput($output);
@@ -396,6 +284,7 @@ class Pruebas_Intralaboral_FA_Controller extends BaseController
 
         //Relaciones
         $crud->setRelation('nro_documento', 'colaborador', '{nro_documento} - {nombre_completo}');
+
 
 	    $output = $crud->render();
 		return $this->_dataOutput($output);

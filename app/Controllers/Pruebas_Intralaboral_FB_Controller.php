@@ -6,12 +6,19 @@ class Pruebas_Intralaboral_FB_Controller extends BaseController
 {
     public function crud_forma_b()
 	{
+
+        $auth = service('auth');
+        $user = $auth->user(); // Obtén el usuario autenticado.
+        $isDigitador = $user->inGroup('digitadores');
+
 	    $crud = new GroceryCrud();
 	    $crud->setTable('forma_b');         
          
         $crud->setSubject('Registro Intralaboral Forma B', 'Formulario Intralaboral Forma B');
         $crud->displayAs('fec_aplica', 'Fecha de Aplicación del Instrumento');
         $crud->displayAs('nro_documento', 'Numero de Documento del Colaborador');
+        $crud->displayAs('creado_por', 'Registro Digitado Por');
+        $crud->fieldType('creado_por', 'hidden');
 
         $crud->displayAs('pregunta_1', '1. El ruido en el lugar donde trabajo es molesto');
         $crud->displayAs('pregunta_2', '2. En el lugar donde trabajo hace mucho frío');
@@ -143,6 +150,37 @@ class Pruebas_Intralaboral_FB_Controller extends BaseController
          
         //Relaciones
         $crud->setRelation('nro_documento', 'colaborador', '{nro_documento} - {nombre_completo}', ['tipo_forma' => 'Forma B']);
+
+        // Where
+        if ($isDigitador):                  
+            $crud->where('forma_b.creado_por', $user->id);
+            $crud->unsetDelete();
+            $crud->unsetEdit();
+         endif; 
+        
+
+           //Callback
+           $crud->callbackBeforeInsert(function ($stateParameters) {
+            // Obtén el ID del usuario desde la sesión activa usando Shield o el método de tu preferencia
+            $user = \CodeIgniter\Config\Services::auth()->user();  // Esto depende de cómo tengas configurado Shield
+        
+            // Verifica si el usuario está autenticado y si tiene un ID válido
+            if ($user && isset($user->id)) {
+                $data = $stateParameters->data;  // Accede directamente a los datos de la inserción
+        
+                // Añade el ID del usuario al campo 'creado_por'
+                $data['creado_por'] = $user->id;
+        
+                // Actualiza los datos para la inserción
+                $stateParameters->data = $data;  // Modifica los datos de la inserción
+            } else {
+                // Si el usuario no está autenticado, lanza un error o realiza alguna acción
+                throw new \Exception('No se pudo obtener el ID del usuario activo.');
+            }
+        
+            return $stateParameters;
+        });
+
 
 	    $output = $crud->render();       
 		return $this->_dataOutput($output);
