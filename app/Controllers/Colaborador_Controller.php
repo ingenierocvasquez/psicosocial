@@ -1,6 +1,8 @@
 <?php namespace App\Controllers;
 
+
 use App\Libraries\GroceryCrud;
+use App\Models\ReporteGeneralModel;
 
 class Colaborador_Controller extends BaseController
 {
@@ -31,7 +33,7 @@ class Colaborador_Controller extends BaseController
 	    $output = $crud->render();
 		return $this->_dataOutput($output);
 	}
-    
+        
 	
     private function _dataOutput($output = null) {
 
@@ -40,13 +42,14 @@ class Colaborador_Controller extends BaseController
 
         $data = [
             'email' => $user->email,
+            'username' => $user->username,
             'isAdmin' => $user->inGroup('administradores'),
             'isDigitador' => $user->inGroup('digitadores'),
         ];
 
         return view('template/header', $data)
                .view('pages/salida_datos', (array)$output)
-               .view('template/footer');
+               .view('template/footer', $data);
     }
 
 

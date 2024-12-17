@@ -29,13 +29,14 @@ class Centro_Trabajo_Controller extends BaseController
 
         $data = [
             'email' => $user->email,
+            'username' => $user->username,
             'isAdmin' => $user->inGroup('administradores'),
             'isDigitador' => $user->inGroup('digitadores'),
         ];
 
         return view('template/header', $data)
                .view('pages/salida_datos', (array)$output)
-               .view('template/footer');
+               .view('template/footer', $data);
     }
 
 

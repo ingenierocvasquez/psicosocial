@@ -530,90 +530,126 @@ CREATE VIEW vista_cal_items_fa AS SELECT fec_aplica, nro_documento,
                       WHEN 'Casi siempre' THEN 3
                       WHEN 'Algunas veces' THEN 2
                       WHEN 'Casi nunca' THEN 1
-                      WHEN 'Nunca' THEN 0 END AS pregunta_106,
+                      WHEN 'Nunca' THEN 0
+							 ELSE 0 
+							 END AS pregunta_106,
     CASE pregunta_107 WHEN 'Siempre' THEN 4
                       WHEN 'Casi siempre' THEN 3
                       WHEN 'Algunas veces' THEN 2
                       WHEN 'Casi nunca' THEN 1
-                      WHEN 'Nunca' THEN 0 END AS pregunta_107,
+                      WHEN 'Nunca' 
+							 ELSE 0
+							 THEN 0 END AS pregunta_107,
     CASE pregunta_108 WHEN 'Siempre' THEN 4
                       WHEN 'Casi siempre' THEN 3
                       WHEN 'Algunas veces' THEN 2
                       WHEN 'Casi nunca' THEN 1
-                      WHEN 'Nunca' THEN 0 END AS pregunta_108,
+                      WHEN 'Nunca' THEN 0 
+							 ELSE 0 
+							 END AS pregunta_108,
     CASE pregunta_109 WHEN 'Siempre' THEN 4
                       WHEN 'Casi siempre' THEN 3
                       WHEN 'Algunas veces' THEN 2
                       WHEN 'Casi nunca' THEN 1
-                      WHEN 'Nunca' THEN 0 END AS pregunta_109,
+                      WHEN 'Nunca' THEN 0 
+							 ELSE 0 
+							 END AS pregunta_109,
     CASE pregunta_110 WHEN 'Siempre' THEN 4
                       WHEN 'Casi siempre' THEN 3
                       WHEN 'Algunas veces' THEN 2
                       WHEN 'Casi nunca' THEN 1
-                      WHEN 'Nunca' THEN 0 END AS pregunta_110,
+                      WHEN 'Nunca' THEN 0 
+							 ELSE 0 
+							 END AS pregunta_110,
     CASE pregunta_111 WHEN 'Siempre' THEN 4
                       WHEN 'Casi siempre' THEN 3
                       WHEN 'Algunas veces' THEN 2
                       WHEN 'Casi nunca' THEN 1
-                      WHEN 'Nunca' THEN 0 END AS pregunta_111,
+                      WHEN 'Nunca' THEN 0 
+							 ELSE 0 
+							 END AS pregunta_111,
     CASE pregunta_112 WHEN 'Siempre' THEN 4
                       WHEN 'Casi siempre' THEN 3
                       WHEN 'Algunas veces' THEN 2
                       WHEN 'Casi nunca' THEN 1
-                      WHEN 'Nunca' THEN 0 END AS pregunta_112,
+                      WHEN 'Nunca' THEN 0 
+							 ELSE 0 
+							 END AS pregunta_112,
     CASE pregunta_113 WHEN 'Siempre' THEN 4
                       WHEN 'Casi siempre' THEN 3
                       WHEN 'Algunas veces' THEN 2
                       WHEN 'Casi nunca' THEN 1
-                      WHEN 'Nunca' THEN 0 END AS pregunta_113,
+                      WHEN 'Nunca' THEN 0 
+							 ELSE 0 
+							 END AS pregunta_113,
     CASE pregunta_114 WHEN 'Siempre' THEN 4
                       WHEN 'Casi siempre' THEN 3
                       WHEN 'Algunas veces' THEN 2
                       WHEN 'Casi nunca' THEN 1
-                      WHEN 'Nunca' THEN 0 END AS pregunta_114,
+                      WHEN 'Nunca' THEN 0 
+							 ELSE 0 
+							 END AS pregunta_114,
     CASE pregunta_115 WHEN 'Siempre' THEN 4
                       WHEN 'Casi siempre' THEN 3
                       WHEN 'Algunas veces' THEN 2
                       WHEN 'Casi nunca' THEN 1
-                      WHEN 'Nunca' THEN 0 END AS pregunta_115,
+                      WHEN 'Nunca' THEN 0 
+							 ELSE 0 
+							 END AS pregunta_115,
     CASE pregunta_116 WHEN 'Siempre' THEN 4
                       WHEN 'Casi siempre' THEN 3
                       WHEN 'Algunas veces' THEN 2
                       WHEN 'Casi nunca' THEN 1
-                      WHEN 'Nunca' THEN 0 END AS pregunta_116,
+                      WHEN 'Nunca' THEN 0 
+							 ELSE 0 
+							 END AS pregunta_116,
     CASE pregunta_117 WHEN 'Siempre' THEN 4
                       WHEN 'Casi siempre' THEN 3
                       WHEN 'Algunas veces' THEN 2
                       WHEN 'Casi nunca' THEN 1
-                      WHEN 'Nunca' THEN 0 END AS pregunta_117,
+                      WHEN 'Nunca' THEN 0 
+							 ELSE 0 
+							 END AS pregunta_117,
     CASE pregunta_118 WHEN 'Siempre' THEN 4
                       WHEN 'Casi siempre' THEN 3
                       WHEN 'Algunas veces' THEN 2
                       WHEN 'Casi nunca' THEN 1
-                      WHEN 'Nunca' THEN 0 END AS pregunta_118,
+                      WHEN 'Nunca' THEN 0 
+							 ELSE 0 
+							 END AS pregunta_118,
     CASE pregunta_119 WHEN 'Siempre' THEN 4
                       WHEN 'Casi siempre' THEN 3
                       WHEN 'Algunas veces' THEN 2
                       WHEN 'Casi nunca' THEN 1
-                      WHEN 'Nunca' THEN 0 END AS pregunta_119,
+                      WHEN 'Nunca' THEN 0 
+							 ELSE 0 
+							 END AS pregunta_119,
     CASE pregunta_120 WHEN 'Siempre' THEN 4
                       WHEN 'Casi siempre' THEN 3
                       WHEN 'Algunas veces' THEN 2
                       WHEN 'Casi nunca' THEN 1
-                      WHEN 'Nunca' THEN 0 END AS pregunta_120,
+                      WHEN 'Nunca' THEN 0 
+							 ELSE 0 
+							 END AS pregunta_120,
     CASE pregunta_121 WHEN 'Siempre' THEN 4
                       WHEN 'Casi siempre' THEN 3
                       WHEN 'Algunas veces' THEN 2
                       WHEN 'Casi nunca' THEN 1
-                      WHEN 'Nunca' THEN 0 END AS pregunta_121,
+                      WHEN 'Nunca' THEN 0 
+							 ELSE 0 
+							 END AS pregunta_121,
     CASE pregunta_122 WHEN 'Siempre' THEN 4
                       WHEN 'Casi siempre' THEN 3
                       WHEN 'Algunas veces' THEN 2
                       WHEN 'Casi nunca' THEN 1
-                      WHEN 'Nunca' THEN 0 END AS pregunta_122,
+                      WHEN 'Nunca' THEN 0 
+							 ELSE 0 
+							 END AS pregunta_122,
     CASE pregunta_123 WHEN 'Siempre' THEN 4
                       WHEN 'Casi siempre' THEN 3
                       WHEN 'Algunas veces' THEN 2
                       WHEN 'Casi nunca' THEN 1
-                      WHEN 'Nunca' THEN 0 END AS pregunta_123
+                      WHEN 'Nunca' THEN 0 
+							 ELSE 0 
+							 END AS pregunta_123
 FROM forma_a;
