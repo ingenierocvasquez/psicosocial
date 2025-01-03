@@ -4,12 +4,12 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link type="text/css" rel="stylesheet" href="http://psicosocial.test//assets/grocery_crud/themes/bootstrap/css/bootstrap/bootstrap.min.css" />
-        <link type="text/css" rel="stylesheet" href="http://psicosocial.test//assets/grocery_crud/themes/bootstrap/css/font-awesome/css/font-awesome.min.css" />
-        <link type="text/css" rel="stylesheet" href="http://psicosocial.test//assets/grocery_crud/themes/bootstrap/css/common.css" />
-        <link type="text/css" rel="stylesheet" href="http://psicosocial.test//assets/grocery_crud/themes/bootstrap/css/list.css" />
-        <link type="text/css" rel="stylesheet" href="http://psicosocial.test//assets/grocery_crud/themes/bootstrap/css/general.css" />
-        <link type="text/css" rel="stylesheet" href="http://psicosocial.test//assets/grocery_crud/themes/bootstrap/css/plugins/animate.min.css" />
+        <link type="text/css" rel="stylesheet" href="<?=base_url().'assets/grocery_crud/themes/bootstrap/css/bootstrap/bootstrap.min.css'?>" />
+        <link type="text/css" rel="stylesheet" href="<?=base_url().'assets/grocery_crud/themes/bootstrap/css/font-awesome/css/font-awesome.min.css'?>" />
+        <link type="text/css" rel="stylesheet" href="<?=base_url().'assets/grocery_crud/themes/bootstrap/css/common.css'?>" />
+        <link type="text/css" rel="stylesheet" href="<?=base_url().'assets/grocery_crud/themes/bootstrap/css/list.css'?>" />
+        <link type="text/css" rel="stylesheet" href="<?=base_url().'assets/grocery_crud/themes/bootstrap/css/general.css'?>" />
+        <link type="text/css" rel="stylesheet" href="<?=base_url().'assets/grocery_crud/themes/bootstrap/css/plugins/animate.min.css'?>" />
         
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -51,9 +51,9 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                 <?php if ($isAdmin): ?>
-                                    <li><a href="<?php echo site_url('centro_trabajo_controller/crud_centro_trabajo')?>"> <i class="fa-solid fa-building"></i> Centros de Trabajo</a></li>
+                                    <li><a href="<?php echo site_url('Centro_Trabajo_Controller/crud_centro_trabajo')?>"> <i class="fa-solid fa-building"></i> Centros de Trabajo</a></li>
                                 <?php endif; ?>
-                                    <li><a href="<?php echo site_url('colaborador_controller/crud_colaborador')?>"> <i class="fa-solid fa-user-group"></i> Colaboradores</a></li>
+                                    <li><a href="<?php echo site_url('Colaborador_Controller/crud_colaborador')?>"> <i class="fa-solid fa-user-group"></i> Colaboradores</a></li>
                                 </ul>
                             </li>
                             <!-- Nuevo menú de pruebas -->
@@ -62,10 +62,10 @@
                                 <i class="fa-solid fa-file-lines"></i> Formularios <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="<?php echo site_url('pruebas_intralaboral_fa_controller/crud_forma_a')?>"> <i class="fa-solid fa-file-lines"></i> Formulario Intralaboral Forma A</a></li>
-                                    <li><a href="<?php echo site_url('pruebas_intralaboral_fb_controller/crud_forma_b')?>"> <i class="fa-solid fa-file-lines"></i> Formulario Intralaboral Forma B</a></li>
-                                    <li><a href="<?php echo site_url('pruebas_extralaboral_fa_fb_controller/crud_forma_extra_ab')?>"> <i class="fa-solid fa-file-lines"></i> Formulario Extralaboral Forma A-B</a></li>
-                                    <li><a href="<?php echo site_url('pruebas_estres_fa_fb_controller/crud_forma_estres_ab')?>"> <i class="fa-solid fa-file-lines"></i> Formulario Estrés</a></li>
+                                    <li><a href="<?php echo site_url('Pruebas_Intralaboral_FA_Controller/crud_forma_a')?>"> <i class="fa-solid fa-file-lines"></i> Formulario Intralaboral Forma A</a></li>
+                                    <li><a href="<?php echo site_url('Pruebas_Intralaboral_FB_Controller/crud_forma_b')?>"> <i class="fa-solid fa-file-lines"></i> Formulario Intralaboral Forma B</a></li>
+                                    <li><a href="<?php echo site_url('Pruebas_Extralaboral_FA_FB_Controller/crud_forma_extra_ab')?>"> <i class="fa-solid fa-file-lines"></i> Formulario Extralaboral Forma A-B</a></li>
+                                    <li><a href="<?php echo site_url('Pruebas_Estres_FA_FB_Controller/crud_forma_estres_ab')?>"> <i class="fa-solid fa-file-lines"></i> Formulario Estrés</a></li>
                                 </ul>
                             </li>
                             <?php if ($isAdmin): ?>
@@ -74,11 +74,11 @@
                                     Reportes <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="<?php echo site_url('pruebas_intralaboral_fa_controller/vista_resultados_fa')?>"> <i class="fa-solid fa-file-csv"></i> Reporte Individual Intralaboral Forma A</a></li>
-                                    <li><a href="<?php echo site_url('pruebas_intralaboral_fb_controller/vista_resultados_fb')?>"> <i class="fa-solid fa-file-csv"></i> Reporte Individual Intralaboral Forma B</a></li>
-                                    <li><a href="<?php echo site_url('pruebas_extralaboral_fa_fb_controller/vista_resultados_extra_fa_fb')?>"> <i class="fa-solid fa-file-csv"></i> Reporte Individual Extralaboral Forma A - B</a></li>
-                                    <li><a href="<?php echo site_url('pruebas_estres_fa_fb_controller/vista_resultados_estres_fa_fb')?>"> <i class="fa-solid fa-file-csv"></i> Reporte Individual Estrés Forma A - B</a></li>
-                                    <li><a href="<?php echo site_url('reporte_general_controller/reporte_general')?>"> <i class="fa-solid fa-file-csv"></i> Resultados General</a></li>
+                                    <li><a href="<?php echo site_url('Pruebas_Intralaboral_FA_Controller/vista_resultados_fa')?>"> <i class="fa-solid fa-file-csv"></i> Reporte Individual Intralaboral Forma A</a></li>
+                                    <li><a href="<?php echo site_url('Pruebas_Intralaboral_FB_Controller/vista_resultados_fb')?>"> <i class="fa-solid fa-file-csv"></i> Reporte Individual Intralaboral Forma B</a></li>
+                                    <li><a href="<?php echo site_url('Pruebas_Extralaboral_FA_FB_Controller/vista_resultados_extra_fa_fb')?>"> <i class="fa-solid fa-file-csv"></i> Reporte Individual Extralaboral Forma A - B</a></li>
+                                    <li><a href="<?php echo site_url('Pruebas_Estres_FA_FB_Controller/vista_resultados_estres_fa_fb')?>"> <i class="fa-solid fa-file-csv"></i> Reporte Individual Estrés Forma A - B</a></li>
+                                    <li><a href="<?php echo site_url('Reporte_General_Controller/reporte_general')?>"> <i class="fa-solid fa-file-csv"></i> Resultados General</a></li>
                                 </ul>
                             </li>
                             <?php endif; ?>
@@ -98,4 +98,5 @@
                     </div>
                 </div>
         </nav>
+        <!-- <div class="alert alert-success" role="alert"><strong><i class="fa-solid fa-circle-info"></i> AVISO: </strong>Estimado digitador <strong><?= esc($username) ?> </strong> agradecemos la espera las actualizaciones se realizaron de forma satisfactoria, <strong>Es importante recordar que la entrega del Centro de Trabajo COLEGIO MAYOR DE BOLIVAR es para el día 19/12/2024.</strong>, Agradecemos su amable atención.</div>-->
 </header>

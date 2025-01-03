@@ -26,10 +26,10 @@ class Database extends Config
      */
     public array $default = [
         'DSN'          => '',
-        'hostname'     => 'localhost',
-        'username'     => 'root',
-        'password'     => '',
-        'database'     => 'psicosocial',
+        'hostname'     => 'sdb-j.hosting.stackcp.net',
+        'username'     => 'ingenierocvasquez',
+        'password'     => 'Ink3008951211/*',
+        'database'     => 'psicosocial-31393009c9',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',
         'pConnect'     => false,

@@ -59,7 +59,7 @@ $crud->displayAs('pregunta_31', '31. En mi hogar tenemos deudas difíciles de pa
 
         /**Rules**/
                 
-        $crud->unsetDelete();
+        //$crud->unsetDelete();
         
        $crud->requiredFields([
             'fec_aplica', 'nro_documento', 'pregunta_1', 'pregunta_2', 'pregunta_3', 'pregunta_4', 'pregunta_5', 'pregunta_6', 'pregunta_7', 'pregunta_8', 'pregunta_9', 'pregunta_10',
@@ -77,7 +77,11 @@ $crud->displayAs('pregunta_31', '31. En mi hogar tenemos deudas difíciles de pa
 
          
         //Relaciones
-        $crud->setRelation('nro_documento', 'colaborador', '{nro_documento} - {nombre_completo}');
+        $crud->setRelation('nro_documento', 'colaborador', 'nombre_completo');
+
+        if ($crud->getState() === 'list' || $crud->getState() === 'success' || $crud->getState() === 'ajax_list' ) {            
+            $crud->setRelation('creado_por', 'users', 'username');
+             } 
         
         //Callback
          $crud->callbackBeforeInsert(function ($stateParameters) {

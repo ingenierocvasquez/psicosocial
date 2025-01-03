@@ -20,7 +20,7 @@ class Pruebas_Intralaboral_FA_Controller extends BaseController
 
         $crud->displayAs('creado_por', 'Registro Digitado Por');
         $crud->fieldType('creado_por', 'hidden');
-        $crud->unsetDelete();
+        //$crud->unsetDelete();
 
         $crud->displayAs('pregunta_1', '1. El ruido en el lugar donde trabajo es molesto');
         $crud->displayAs('pregunta_2', '2. En el lugar donde trabajo hace mucho frío');
@@ -180,7 +180,12 @@ class Pruebas_Intralaboral_FA_Controller extends BaseController
         $crud->fieldType('creado_por', 'hidden');
 
         //Relaciones
-        $crud->setRelation('nro_documento', 'colaborador', '{nro_documento} - {nombre_completo}', ['tipo_forma' => 'Forma A']);
+        $crud->setRelation('nro_documento', 'colaborador', 'nombre_completo', ['tipo_forma' => 'Forma A']);
+
+
+        if ($crud->getState() === 'list' || $crud->getState() === 'success' || $crud->getState() === 'ajax_list' ) {            
+            $crud->setRelation('creado_por', 'users', 'username');
+             } 
 
              //Where
 

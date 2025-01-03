@@ -14,7 +14,7 @@ class Pruebas_Estres_FA_FB_Controller extends BaseController
 	    $crud = new GroceryCrud();
 	    $crud->setTable('forma_estres_fa_fb');         
          
-        $crud->setSubject('Registro Extralaboral Forma A-B', 'Formulario Extralaboral Forma A-B');
+        $crud->setSubject('Registro Estres Forma A-B', 'Formulario Estres Forma A-B');
         $crud->displayAs('fec_aplica', 'Fecha de Aplicación del Instrumento');
         $crud->displayAs('nro_documento', 'Numero de Documento del Colaborador');
         
@@ -55,7 +55,7 @@ class Pruebas_Estres_FA_FB_Controller extends BaseController
 
         /**Rules**/
                 
-        $crud->unsetDelete();
+        //$crud->unsetDelete();
         
        $crud->requiredFields([
             'fec_aplica', 'nro_documento', 'pregunta_1', 'pregunta_2', 'pregunta_3', 'pregunta_4', 'pregunta_5', 'pregunta_6', 'pregunta_7', 'pregunta_8', 'pregunta_9', 'pregunta_10',
@@ -66,7 +66,11 @@ class Pruebas_Estres_FA_FB_Controller extends BaseController
 
          
         //Relaciones
-        $crud->setRelation('nro_documento', 'colaborador', '{nro_documento} - {nombre_completo}');
+        $crud->setRelation('nro_documento', 'colaborador', 'nombre_completo');
+
+        if ($crud->getState() === 'list' || $crud->getState() === 'success' || $crud->getState() === 'ajax_list' ) {            
+            $crud->setRelation('creado_por', 'users', 'username');
+             } 
 
         // Where
         if ($isDigitador):                  
@@ -110,7 +114,7 @@ class Pruebas_Estres_FA_FB_Controller extends BaseController
 	{
 	    $crud = new GroceryCrud();
 	    $crud->setTable('resultados_estres_fa_fb');
-        $crud->setSubject('Resultados Extralaboral Forma A-B', 'Resultados Extralaboral Forma A-B');
+        $crud->setSubject('Resultados Estres Forma A-B', 'Resultados Estres Forma A-B');
         $crud->displayAs('fec_aplica', 'Fecha de Aplicación del Instrumento');
         $crud->displayAs('nro_documento', 'Numero de Documento del Colaborador');
         

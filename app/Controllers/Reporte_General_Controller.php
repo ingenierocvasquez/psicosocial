@@ -12,7 +12,7 @@ class Reporte_General_Controller extends BaseController
 
         $crud->setPrimaryKey('id_colaborador');
 
-        $crud->setSubject('Resultados Intralaboral Forma A', 'Resultados Intralaboral Forma A');
+        $crud->setSubject('Resultados Generales', 'Resultados Generales');
         $crud->displayAs('fec_aplica', 'Fecha de Aplicación del Instrumento');
         $crud->displayAs('nro_documento', 'Numero de Documento del Colaborador');
 
@@ -140,7 +140,8 @@ class Reporte_General_Controller extends BaseController
         $crud->unsetOperations();
 
         //Relaciones
-        $crud->setRelation('id_centro_trabajo', 'centro_trabajo', '{id} - {nombre}');
+        $crud->setRelation('id_centro_trabajo', 'centro_trabajo', 'nombre');
+        $crud->setRelation('creado_por', 'users', 'username');
 
 	    $output = $crud->render();
 		return $this->_dataOutput($output);
